@@ -32,7 +32,7 @@ int dir = 0;
 #endif
 
 void setup(){
-  //motor stuff
+  //set pin outs for motors
   pinMode(motorpina,OUTPUT);
   pinMode(motorpinb,OUTPUT);
   pinMode(motorpinc,OUTPUT);
@@ -52,6 +52,7 @@ void loop(){
 
   gyro.read();
   if(count<100){
+    //initialization of gyro data 
     rzero[0] = ((int)gyro.data.x + rzero[0])/count;
     rzero[1] = ((int)gyro.data.y + rzero[1])/count;
     rzero[2] = ((int)gyro.data.z + rzero[2])/count;
@@ -71,6 +72,7 @@ void loop(){
   else{
     dir = -1;
   }
+  //see gyro output for the z-axis
   Serial.print("TrueZ: "); Serial.print(truez); Serial.print("Dir: "); Serial.print(dir); Serial.println(" ");
   move();
   delay(15);
